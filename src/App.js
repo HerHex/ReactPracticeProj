@@ -5,11 +5,15 @@ import './styles.css';
 import Popup from './components/Popup/Popup';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
+import { Grid, ImageList, ImageListItem} from '@mui/material';
+import ItemData from './components/Images/ItemData';
+import Box from '@mui/material/Box';
 
 
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [timedPopup, setTimePopup] = useState(false);
+
 
   //  useEffect(() => {
   //   setTimeout(() => {
@@ -23,10 +27,20 @@ function App() {
         <Navbar style={{ backgroundColor: 'red'}} />
       </div>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={() => setButtonPopup(true)}>Click me !</button>
-        <Button onClick={() => setButtonPopup(true)} variant="danger" size={"sm"}>Eloooo</Button>
-        <Button onClick={() => setButtonPopup(true)} variant="default" size={"sm"}>Eloooo</Button>
+      <Box sx={{ width: '40%', height: '50%', overflowY: 'hidden' }}>
+          <ImageList variant="masonry" cols={3} gap={8}>
+            {ItemData.map((item) => (
+              <ImageListItem key={item.img}>
+                <img 
+                  src={`${item.img}?w=248&fit=crop&auto=format`}
+                  srcSet={`${item.img}w=248&fit=crop&auto=format&dpr=2 2x`}
+                  alt={item.title}
+                  loading="lazy"  
+                  />
+              </ImageListItem>
+            ))}
+          </ImageList>
+          </Box>
       </header>
 
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
