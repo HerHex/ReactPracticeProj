@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from './components/Buttons/Button';
 import './styles.css';
 import Popup from './components/Popup/Popup';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { Grid, ImageList, ImageListItem} from '@mui/material';
-import ItemData from './components/Images/ItemData';
+import { ImageList, ImageListItem} from '@mui/material';
 import Box from '@mui/material/Box';
+import { createApi } from 'unsplash-js';
+import ItemData from './components/Images/ItemData';
 
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-navbar">
-        <Navbar style={{ backgroundColor: 'red'}} />
+        <Navbar />
       </div>
       <header className="App-header">
       <Box sx={{ width: '40%', height: '50%', overflowY: 'hidden' }}>

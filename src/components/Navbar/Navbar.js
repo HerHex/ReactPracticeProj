@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import { createApi } from 'unsplash-js';
+
 
 const pages = ['Pictures', 'About', 'Artists'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -56,7 +58,7 @@ const Navbar = () => {
         },
     }));
 
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
+     const SearchIconWrapper = styled('div')(({ theme }) => ({
         padding: theme.spacing(0, 2),
         height: '100%',
         position: 'absolute',
@@ -64,7 +66,7 @@ const Navbar = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-    }));
+    })); 
 
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
         color: 'inherit',
@@ -83,9 +85,36 @@ const Navbar = () => {
         },
     }));
 
+    // Search function // Check Unsplash API to json thingy tmrw
+    const [query, setQuery] = useState("");
+    const unsplash = createApi({ accessKey: 'lAZIXxW9aVBLQq1CgCsapMTG2AqEywT3X7pjEyVGr0k' });
+
+    const searchPhotos = async (e) => {
+
+            unsplash.search.getPhotos({
+                query: { query },
+                page: 1,
+                perPage: 10,
+                color: 'green',
+                orientation: 'portrait',
+
+            }).then (result => {
+                if (result.errors) {
+                    console.log('error occured', result.error[0]);
+                } else {
+                    const photos  = [result.response];
+                    console.log(photos);
+                }
+            });
+
+    };
+
+
+    //
+
 
     return (
-        <AppBar position="static" sx={{ background: 'purple'}}>
+        <AppBar position="static" sx={{ background: 'purple' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -146,14 +175,19 @@ const Navbar = () => {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 1 }}>
-                        <Search>
-                            <SearchIconWrapper>
+                    <Box sx={{ flexGrow: 1 }} >
+                        <Search onSubmit={searchPhotos}>
+                            <IconButton onClick={searchPhotos}>
                                 <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase 
-                            placeholder="Search..."
-                            inputProps= {{ 'aria-label' : 'search'}} 
+                            </IconButton>
+                            <StyledInputBase
+                                type="text"
+                                name="query"
+                                className="input"
+                                placeholder="Search..."
+                                inputProps={{ 'aria-label': 'search' }}
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
                             />
                         </Search>
                     </Box>
@@ -193,4 +227,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;
