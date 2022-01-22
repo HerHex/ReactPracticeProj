@@ -6,12 +6,13 @@ import Navbar from './components/Navbar/Navbar';
 import { ImageList, ImageListItem} from '@mui/material';
 import Box from '@mui/material/Box';
 import { createApi } from 'unsplash-js';
-import ItemData from './components/Images/ItemData';
+import ListOfImages from './components/ImageList/listOfImages';
 
 
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [timedPopup, setTimePopup] = useState(false);
+  const [props, setProps] = useState([]);
 
 
   //  useEffect(() => {
@@ -26,20 +27,7 @@ function App() {
         <Navbar />
       </div>
       <header className="App-header">
-      <Box sx={{ width: '40%', height: '50%', overflowY: 'hidden' }}>
-          <ImageList variant="masonry" cols={3} gap={8}>
-            {ItemData.map((item) => (
-              <ImageListItem key={item.img}>
-                <img 
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
-                  srcSet={`${item.img}w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"  
-                  />
-              </ImageListItem>
-            ))}
-          </ImageList>
-          </Box>
+      <ListOfImages />
       </header>
 
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>

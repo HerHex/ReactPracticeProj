@@ -15,6 +15,8 @@ import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { createApi } from 'unsplash-js';
+import ListOfImages from "../ImageList/listOfImages";
+import { List } from "@mui/material";
 
 
 const pages = ['Pictures', 'About', 'Artists'];
@@ -88,6 +90,7 @@ const Navbar = () => {
     // Search function // Check Unsplash API to json thingy tmrw
     const [query, setQuery] = useState("");
     const unsplash = createApi({ accessKey: 'lAZIXxW9aVBLQq1CgCsapMTG2AqEywT3X7pjEyVGr0k' });
+    const [photos, setPhotos] = useState([]);
 
     const searchPhotos = async (e) => {
 
@@ -102,12 +105,14 @@ const Navbar = () => {
                 if (result.errors) {
                     console.log('error occured', result.error[0]);
                 } else {
-                    const photos  = [result.response];
-                    console.log(photos);
+                    setPhotos(result.response);
+                    
                 }
             });
 
     };
+    console.log(photos);
+    ListOfImages(photos);
 
 
     //
