@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, createContext } from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,7 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { createApi } from 'unsplash-js';
 import ListOfImages from "../ImageList/listOfImages";
-import { List } from "@mui/material";
+import { Context } from "./Context";
 
 
 const pages = ['Pictures', 'About', 'Artists'];
@@ -44,6 +44,9 @@ const Navbar = () => {
         setAnchorElUser(null);
     };
 
+    function searchPhotos(searchInput) {
+        console.log(searchInput);
+    }
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -60,7 +63,7 @@ const Navbar = () => {
         },
     }));
 
-     const SearchIconWrapper = styled('div')(({ theme }) => ({
+    const SearchIconWrapper = styled('div')(({ theme }) => ({
         padding: theme.spacing(0, 2),
         height: '100%',
         position: 'absolute',
@@ -68,7 +71,7 @@ const Navbar = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-    })); 
+    }));
 
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
         color: 'inherit',
@@ -86,37 +89,8 @@ const Navbar = () => {
             },
         },
     }));
-
-    // Search function // Check Unsplash API to json thingy tmrw
-    const [query, setQuery] = useState("");
-    const unsplash = createApi({ accessKey: 'lAZIXxW9aVBLQq1CgCsapMTG2AqEywT3X7pjEyVGr0k' });
-    const [photos, setPhotos] = useState([]);
-
-    const searchPhotos = async (e) => {
-
-            unsplash.search.getPhotos({
-                query: { query },
-                page: 1,
-                perPage: 10,
-                color: 'green',
-                orientation: 'portrait',
-
-            }).then (result => {
-                if (result.errors) {
-                    console.log('error occured', result.error[0]);
-                } else {
-                    setPhotos(result.response);
-                    
-                }
-            });
-
-    };
-    console.log(photos);
-    ListOfImages(photos);
-
-
-    //
-
+    
+    const [query, setQuery] = useContext(Context);
 
     return (
         <AppBar position="static" sx={{ background: 'purple' }}>
@@ -181,8 +155,8 @@ const Navbar = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 1 }} >
-                        <Search onSubmit={searchPhotos}>
-                            <IconButton onClick={searchPhotos}>
+                        <Search>
+                            <IconButton>
                                 <SearchIcon />
                             </IconButton>
                             <StyledInputBase
@@ -191,7 +165,6 @@ const Navbar = () => {
                                 className="input"
                                 placeholder="Search..."
                                 inputProps={{ 'aria-label': 'search' }}
-                                value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                             />
                         </Search>

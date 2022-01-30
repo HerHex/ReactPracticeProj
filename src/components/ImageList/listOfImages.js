@@ -1,69 +1,48 @@
-import React, { useState, setStat } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ImageList, ImageListItem } from '@mui/material';
 import Box from '@mui/material/Box';
+import { createApi } from 'unsplash-js';
+import {Context} from '../Navbar/Context';
 
-const ItemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-    title: 'Books',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-    title: 'Sink',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-    title: 'Kitchen',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-    title: 'Blinds',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-    title: 'Chairs',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-    title: 'Laptop',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-    title: 'Doors',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-    title: 'Coffee',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-    title: 'Storage',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-    title: 'Candle',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-    title: 'Coffee table',
-  },
-];
+
+
+
 
 function ListOfImages(props) {
-  props = Array.from(props);
+  const unsplash = createApi({ accessKey: 'zwvfNbBe_Z5xfIt0nJXXX5B7m1RupBKuT5gSHlAksy0' });
+  const [photos, setPhotos] = useState([]);
+  const [query, setQuery] = useContext(Context);
+  const defaultQuery = 'Pretty Lady';
 
-  console.log(props);
+  console.log(query);
+
+  useEffect(() => {
+  unsplash.search.getPhotos({
+    query: query || defaultQuery,
+    page: 1,
+    perPage: 15,
+
+  }).then(result => {
+    if (result.errors) {
+      // handle error here
+      console.log('error occurred: ', result.errors[0]);
+    } else {
+      setPhotos(result.response.results);
+    }
+  })
+}, [query]);
+
 
 
 
   return (
+
     <Box sx={{ width: '40%', height: '50%', overflowY: 'hidden' }}>
       <ImageList variant="masonry" cols={3} gap={8}>
-        {props.map((item) => (
+        {photos.map((item) => (
           <ImageListItem key={item.id}>
             <img
-              src={`${item.urls}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.regular}w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.urls.regular}?w=248&fit=crop&auto=format`}
               alt={item.alt_description}
               loading="lazy"
             />
