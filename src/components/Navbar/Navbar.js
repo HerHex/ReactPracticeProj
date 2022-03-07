@@ -39,6 +39,10 @@ const Navbar = () => {
         setAnchorElUser(null);
     };
 
+    const handleSearch = (event) => {
+        console.log("searching");
+    };
+
 
 
     return (

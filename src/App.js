@@ -1,5 +1,3 @@
-import './App.css';
-import './styles.css';
 import Popup from './components/Popup/Popup';
 import { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';

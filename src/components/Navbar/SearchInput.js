@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import { Input } from "@mui/material";
 
 function SearchInput() {
 
@@ -40,6 +41,8 @@ function SearchInput() {
         },
     }));
 
+
+
     //* handler input so it can reset
 
 
@@ -50,7 +53,7 @@ function SearchInput() {
     return (
         <Box sx={{ flexGrow: 1 }} >
             <Search>
-                <IconButton>
+                <IconButton >
                     <SearchIcon />
                 </IconButton>
                 <StyledInputBase
