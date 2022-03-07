@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { styled, alpha } from '@mui/material/styles';
+import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,11 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import { createApi } from 'unsplash-js';
-import ListOfImages from "../ImageList/listOfImages";
-import { List } from "@mui/material";
+import SearchInput from "./SearchInput";
 
 
 const pages = ['Pictures', 'About', 'Artists'];
@@ -44,78 +39,10 @@ const Navbar = () => {
         setAnchorElUser(null);
     };
 
-
-    const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0, 25),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-    }));
-
-     const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    })); 
-
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
-        '& .MuiInputBase-input': {
-            padding: theme.spacing(1, 1, 1, 0),
-
-            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-            transition: theme.transitions.create('width'),
-            width: '100%',
-            [theme.breakpoints.up('sm')]: {
-                width: '12ch',
-                '&:focus': {
-                    width: '20cd',
-                },
-            },
-        },
-    }));
-
-    // Search function // Check Unsplash API to json thingy tmrw
-    const [query, setQuery] = useState("");
-    const unsplash = createApi({ accessKey: 'lAZIXxW9aVBLQq1CgCsapMTG2AqEywT3X7pjEyVGr0k' });
-    const [photos, setPhotos] = useState([]);
-
-    const searchPhotos = async (e) => {
-
-            unsplash.search.getPhotos({
-                query: { query },
-                page: 1,
-                perPage: 10,
-                color: 'green',
-                orientation: 'portrait',
-
-            }).then (result => {
-                if (result.errors) {
-                    console.log('error occured', result.error[0]);
-                } else {
-                    setPhotos(result.response);
-                    
-                }
-            });
-
+    const handleSearch = (event) => {
+        console.log("searching");
     };
-    console.log(photos);
-    ListOfImages(photos);
 
-
-    //
 
 
     return (
@@ -179,23 +106,7 @@ const Navbar = () => {
                             </Button>
                         ))}
                     </Box>
-
-                    <Box sx={{ flexGrow: 1 }} >
-                        <Search onSubmit={searchPhotos}>
-                            <IconButton onClick={searchPhotos}>
-                                <SearchIcon />
-                            </IconButton>
-                            <StyledInputBase
-                                type="text"
-                                name="query"
-                                className="input"
-                                placeholder="Search..."
-                                inputProps={{ 'aria-label': 'search' }}
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                            />
-                        </Search>
-                    </Box>
+                            <SearchInput />
 
                     <Box sx={{ flexGrow: 1 }}>
                         <Tooltip title="Open settings">

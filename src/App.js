@@ -1,18 +1,19 @@
-import './App.css';
-import './styles.css';
 import Popup from './components/Popup/Popup';
 import { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { ImageList, ImageListItem} from '@mui/material';
+import { ImageList, ImageListItem } from '@mui/material';
 import Box from '@mui/material/Box';
 import { createApi } from 'unsplash-js';
 import ListOfImages from './components/ImageList/listOfImages';
+import QueryProvider from './components/Navbar/Context';
 
 
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [timedPopup, setTimePopup] = useState(false);
   const [props, setProps] = useState([]);
+
+
 
 
   //  useEffect(() => {
@@ -22,13 +23,15 @@ function App() {
   // }, []) 
 
   return (
-    <div className="App">
-      <div className="App-navbar">
-        <Navbar />
-      </div>
-      <header className="App-header">
-      <ListOfImages />
-      </header>
+    <div className="App"  >
+      <QueryProvider>
+        <div className="App-navbar">
+          <Navbar />
+        </div>
+        <header className="App-header">
+          <ListOfImages />
+        </header>
+      </QueryProvider>
 
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <h3> Woah Popup !</h3>
