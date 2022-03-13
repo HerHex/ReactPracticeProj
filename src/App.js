@@ -1,11 +1,9 @@
-import Popup from './components/Popup/Popup';
 import { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { ImageList, ImageListItem } from '@mui/material';
-import Box from '@mui/material/Box';
-import { createApi } from 'unsplash-js';
 import ListOfImages from './components/ImageList/listOfImages';
 import QueryProvider from './components/Navbar/Context';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Artists from './pages/Artists';
 
 
 function App() {
@@ -23,26 +21,25 @@ function App() {
   // }, []) 
 
   return (
-    <div className="App"  >
-      <QueryProvider>
-        <div className="App-navbar">
-          <Navbar />
+    <BrowserRouter>
+      <Routes>
+      <Route path="/" element={
+        <div className="App"  >
+          <QueryProvider>
+            <div className="App-navbar">
+              <Navbar />
+            </div>
+            <header className="App-header">
+              <ListOfImages />
+            </header>
+          </QueryProvider>
         </div>
-        <header className="App-header">
-          <ListOfImages />
-        </header>
-      </QueryProvider>
-
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <h3> Woah Popup !</h3>
-        <p> WOAAAAAAA </p>
-      </Popup>
-
-      <Popup trigger={timedPopup} setTrigger={setTimePopup}>
-        <h3> THIS IS AN AUTO TIMED Woah Popup !</h3>
-        <p> WOAAAAAAA triggered by timer ! </p>
-      </Popup>
-    </div>
+        }>     
+        </Route>
+        <Route path ="Artists" element={  <Artists />} />
+        
+      </Routes>
+    </BrowserRouter>
   );
 }
 

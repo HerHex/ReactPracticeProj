@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { Input } from "@mui/material";
 
+
 function SearchInput() {
 
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -67,6 +68,7 @@ function SearchInput() {
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
                             setQuery(e.target.value)
+                            
                         }
                     }
                     }

@@ -12,6 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchInput from "./SearchInput";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Link from '@mui/material/Link';
+
 
 
 const pages = ['Pictures', 'About', 'Artists'];
@@ -42,6 +45,7 @@ const Navbar = () => {
     const handleSearch = (event) => {
         console.log("searching");
     };
+
 
 
 
@@ -102,7 +106,7 @@ const Navbar = () => {
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                <Link href={page}>{page}</Link>
                             </Button>
                         ))}
                     </Box>
