@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 
 
 
-const pages = ['Pictures', 'About', 'Artists'];
+const pages = ['Home', 'About', 'Artists'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
@@ -59,10 +59,10 @@ const Navbar = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        LOGO
+
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none'} }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -92,21 +92,22 @@ const Navbar = () => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                <MenuItem key={page} onClick={handleCloseNavMenu} >
+                                    <Typography textAlign="center" >{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'center'} }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                
+                                sx={{ my: 2, display: 'block', hover: 'pointer', '&:hover': { background: 'red'}}}
                             >
-                                <Link href={page}>{page}</Link>
+                                <Link href={page} sx={{color: 'white', textAlign: 'center', fontSize: 17, textDecoration: 'none'}}>{page}</Link>
                             </Button>
                         ))}
                     </Box>
@@ -114,7 +115,7 @@ const Navbar = () => {
 
                     <Box sx={{ flexGrow: 1 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, margin: 2 }}>
                                 <Avatar alt="Remy Sharp" src="src\components\Images\Sunset.jpg" />
                             </IconButton>
                         </Tooltip>

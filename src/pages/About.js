@@ -4,15 +4,15 @@ import Navbar from '../components/Navbar/Navbar'
 import { Context } from "../components/Navbar/Context";
 import QueryProvider from '../components/Navbar/Context';
 
-function Artists() {
+function About() {
   return (
     <QueryProvider>
     <div className="App-navbar">
       <Navbar />
     </div>
-    <div>Artist page. WIP</div>
+    <div>Created this project to learn some stuff ! </div>
   </QueryProvider>
   )
 }
 
-export default Artists
+export default About

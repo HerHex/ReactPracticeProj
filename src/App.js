@@ -4,6 +4,7 @@ import ListOfImages from './components/ImageList/listOfImages';
 import QueryProvider from './components/Navbar/Context';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Artists from './pages/Artists';
+import About from './pages/About';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={
+      <Route path="Home" element={
         <div className="App"  >
           <QueryProvider>
             <div className="App-navbar">
@@ -37,6 +38,7 @@ function App() {
         }>     
         </Route>
         <Route path ="Artists" element={  <Artists />} />
+        <Route path ="About" element={  <About />} />
         
       </Routes>
     </BrowserRouter>
