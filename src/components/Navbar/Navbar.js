@@ -107,7 +107,7 @@ const Navbar = () => {
                                 
                                 sx={{ my: 2, display: 'block', hover: 'pointer', '&:hover': { background: 'red'}}}
                             >
-                                <Link href={page} sx={{color: 'white', textAlign: 'center', fontSize: 17, textDecoration: 'none'}}>{page}</Link>
+                                <Link href={page} sx={{color: '#fff', textAlign: 'center', fontSize: 17, textDecoration: 'none'}}>{page}</Link>
                             </Button>
                         ))}
                     </Box>

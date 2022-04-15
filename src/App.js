@@ -24,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="Home" element={
+      <Route path="/" element={
         <div className="App"  >
           <QueryProvider>
             <div className="App-navbar">
@@ -35,11 +35,9 @@ function App() {
             </header>
           </QueryProvider>
         </div>
-        }>     
-        </Route>
+        } />     
         <Route path ="Artists" element={  <Artists />} />
-        <Route path ="About" element={  <About />} />
-        
+        <Route path ="About" element={  <About />} />  
       </Routes>
     </BrowserRouter>
   );
