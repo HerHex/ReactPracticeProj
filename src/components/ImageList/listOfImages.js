@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
-import { styled, Box } from '@mui/system';
+import { Box } from '@mui/system';
 import { createApi, } from 'unsplash-js';
 import { Context } from '../Navbar/Context';
 import Modal from '@mui/material/Modal';

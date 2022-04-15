@@ -12,7 +12,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchInput from "./SearchInput";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Link from '@mui/material/Link';
 
 
@@ -42,9 +41,6 @@ const Navbar = () => {
         setAnchorElUser(null);
     };
 
-    const handleSearch = (event) => {
-        console.log("searching");
-    };
 
 
 

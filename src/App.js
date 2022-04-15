@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import ListOfImages from './components/ImageList/listOfImages';
 import QueryProvider from './components/Navbar/Context';
@@ -8,9 +7,9 @@ import About from './pages/About';
 
 
 function App() {
-  const [buttonPopup, setButtonPopup] = useState(false);
-  const [timedPopup, setTimePopup] = useState(false);
-  const [props, setProps] = useState([]);
+  // const [buttonPopup, setButtonPopup] = useState(false);
+  // const [timedPopup, setTimePopup] = useState(false);
+  // const [props, setProps] = useState([]);
 
 
 
