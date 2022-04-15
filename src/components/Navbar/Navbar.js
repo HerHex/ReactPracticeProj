@@ -46,7 +46,7 @@ const Navbar = () => {
 
 
     return (
-        <AppBar position="static" sx={{ background: 'black' }}>
+        <AppBar position="static" sx={{ background: 'linear-gradient(196deg, rgba(0,0,0,1) 0%, rgba(97,0,161,1) 98%)' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -101,7 +101,7 @@ const Navbar = () => {
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 
-                                sx={{ my: 2, display: 'block', hover: 'pointer', '&:hover': { background: 'red'}}}
+                                sx={{ my: 2, display: 'block', hover: 'pointer', '&:hover': { background: 'black'}}}
                             >
                                 <Link href={page} sx={{color: '#fff', textAlign: 'center', fontSize: 17, textDecoration: 'none'}}>{page}</Link>
                             </Button>
@@ -112,7 +112,7 @@ const Navbar = () => {
                     <Box sx={{ flexGrow: 1 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, margin: 2 }}>
-                                <Avatar alt="Remy Sharp" src="src\components\Images\Sunset.jpg" />
+                                <Avatar src="src\components\Images\Sunset.jpg" />
                             </IconButton>
                         </Tooltip>
                         <Menu

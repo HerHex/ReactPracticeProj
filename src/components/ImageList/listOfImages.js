@@ -57,7 +57,7 @@ function ListOfImages(props) {
 
   return (
 
-    <Box sx={{ width: '100%', height: '50%', overflowY: 'hidden' }}>
+    <Box sx={{ width: '100%', height: '50%', overflowY: 'hidden', background: 'black'}}>
       <ImageList variant="masonry" cols={5} gap={5} >
         {photos.map((item) => (
           <ImageListItem key={item.id} >
